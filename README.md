@@ -2,6 +2,13 @@ react-process-string
 -----
 This library allows you to process strings with regular expressions in ReactJS.
 
+Installation
+---
+Via npm:
+```
+npm install react-process-string --save
+```
+
 Syntax
 ---
 ```javascript
