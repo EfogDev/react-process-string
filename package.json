@@ -1,0 +1,24 @@
+{
+  "name": "react-process-string",
+  "version": "0.0.1",
+  "description": "A library to process strings with regular expressions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EfogDev/react-process-string.git"
+  },
+  "keywords": [
+    "react",
+    "regex",
+    "string"
+  ],
+  "author": "Efog <efog@yandex.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EfogDev/react-process-string/issues"
+  },
+  "homepage": "https://github.com/EfogDev/react-process-string#readme"
+}
