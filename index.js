@@ -18,9 +18,10 @@ function processString(options) {
                 output.push(input.substring(0, index));
                 output.push(option.fn(index, result));
 
-                input = input.substring(index + match.length, input.length);
+                input = input.substring(index + match.length - 1, input.length);
             }
 
+            output.push(input);
             return output;
         } else if (Array.isArray(input)) {
             return input.map(chunk => processInputWithRegex(option, chunk));
@@ -31,9 +32,9 @@ function processString(options) {
         if (!options || !Array.isArray(options) || !options.length)
             return input;
 
-        let result = options.map(option => processInputWithRegex(option, input));
+        options.forEach(option => input = processInputWithRegex(option, input));
 
-        return result.filter(r => r.length).length ? result : input;
+        return input;
     };
 }
 
