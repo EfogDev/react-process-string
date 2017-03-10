@@ -11,14 +11,14 @@ function processString(options) {
             let result = null;
             let output = [];
 
-            while ((result = regex.exec(string)) !== null) {
+            while ((result = regex.exec(input)) !== null) {
                 let index = result.index;
                 let match = result[0];
 
-                output.push(string.substring(0, index));
+                output.push(input.substring(0, index));
                 output.push(option.fn(index, result));
 
-                string = string.substring(index + match.length, string.length);
+                input = input.substring(index + match.length, input.length);
             }
 
             return output;
