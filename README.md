@@ -28,10 +28,10 @@ class HelloWorld extends React.Component {
         let stringWithLinks = "Watch this on youtube.com";
         let processed = processString([{
             regex: /(http|https):\/\/(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <a key={key} target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>
+            fn: (key, result) => <span><a key={key} target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>{result[5]}</span>
         }, {
             regex: /(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <a key={key} target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>
+            fn: (key, result) => <span><a key={key} target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>{result[4]}</span>
         }])(string);
 
         return (

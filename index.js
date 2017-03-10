@@ -18,7 +18,7 @@ function processString(options) {
                 output.push(input.substring(0, index));
                 output.push(option.fn(index, result));
 
-                input = input.substring(index + match.length - 1, input.length);
+                input = input.substring(index + match.length, input.length);
             }
 
             output.push(input);
