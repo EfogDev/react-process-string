@@ -45,19 +45,19 @@ On the user side, `processed` will contain clickable links.
 Example №2
 ---
 ```javascript
-    let users = ourStore.users;
-    let stringWithUsername = "Hello @efog, how do you feel today?";
-    let processed = processString([{
-        regex: /\@([a-z0-9_\-]+?)( |\,|$|\.)/gim, //regex to match a username
-        fn: (key, result) => {
-            let username = result[1];
-            let foundUsers = users.filter(user => user.username === username);
-            
-            if (!foundUsers.length)
-                return result[0]; //@username
-            
-            return <a key={key} href={`/user/${username}`}>@{username}</a>;
-        }
-    });
+let users = ourStore.users;
+let stringWithUsername = "Hello @efog, how do you feel today?";
+let processed = processString([{
+    regex: /\@([a-z0-9_\-]+?)( |\,|$|\.)/gim, //regex to match a username
+    fn: (key, result) => {
+        let username = result[1];
+        let foundUsers = users.filter(user => user.username === username);
+
+        if (!foundUsers.length)
+            return result[0]; //@username
+
+        return <a key={key} href={`/user/${username}`}>@{username}</a>;
+    }
+}]);
 ```
 This code allows us to make @usernames clickable.
