@@ -28,10 +28,10 @@ class HelloWorld extends React.Component {
         let stringWithLinks = "Watch this on youtube.com";
         let processed = processString([{
             regex: /(http|https):\/\/(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <span><a key={key} target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>{result[5]}</span>
+            fn: (key, result) => <span key={key}><a target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>{result[5]}</span>
         }, {
             regex: /(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <span><a key={key} target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>{result[4]}</span>
+            fn: (key, result) => <span key={key}><a target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>{result[4]}</span>
         }])(string);
 
         return (
@@ -40,5 +40,24 @@ class HelloWorld extends React.Component {
     }
 }
 ```
-
 On the user side, `processed` will contain clickable links.
+
+Example №2
+---
+```javascript
+    let users = ourStore.users;
+    let stringWithUsername = "Hello @efog, how do you feel today?";
+    let processed = processString([{
+        regex: /\@([a-z0-9_\-]+?)( |\,|$|\.)/gim, //regex to match a username
+        fn: (key, result) => {
+            let username = result[1];
+            let foundUsers = users.filter(user => user.username === username);
+            
+            if (!foundUsers.length)
+                return result[0]; //@username
+            
+            return <a key={key} href={`/user/${username}`}>@{username}</a>;
+        }
+    });
+```
+This code allows us to make @usernames clickable.
