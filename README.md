@@ -1,6 +1,6 @@
 react-process-string
 -----
-This library allows you to process strings with regular expressions in ReactJS.
+The library allows you to process strings with regular expressions in ReactJS.
 
 Installation
 ---
@@ -25,14 +25,20 @@ const processString = require('react-process-string');
 
 class HelloWorld extends React.Component {
     render() {
-        let stringWithLinks = "Watch this on youtube.com";
-        let processed = processString([{
+        let config = [{
             regex: /(http|https):\/\/(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <span key={key}><a target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>{result[5]}</span>
+            fn: (key, result) => <span key={key}>
+                                     <a target="_blank" href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}>{result[2]}.{result[3]}{result[4]}</a>{result[5]}
+                                 </span>
         }, {
             regex: /(\S+)\.([a-z]{2,}?)(.*?)( |\,|$|\.)/gim,
-            fn: (key, result) => <span key={key}><a target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>{result[4]}</span>
-        }])(string);
+            fn: (key, result) => <span key={key}>
+                                     <a target="_blank" href={`http://${result[1]}.${result[2]}${result[3]}`}>{result[1]}.{result[2]}{result[3]}</a>{result[4]}
+                                 </span>
+        }];
+
+        let stringWithLinks = "Watch this on youtube.com";
+        let processed = processString(config)(stringWithLinks);
 
         return (
             <div>Hello world! {processed}</div>
@@ -47,6 +53,7 @@ Example №2
 ```javascript
 let users = ourStore.users;
 let stringWithUsername = "Hello @efog, how do you feel today?";
+
 let processed = processString([{
     regex: /\@([a-z0-9_\-]+?)( |\,|$|\.)/gim, //regex to match a username
     fn: (key, result) => {
@@ -60,4 +67,4 @@ let processed = processString([{
     }
 }]);
 ```
-This code allows us to make @usernames clickable.
+This code allows us to make `@usernames` clickable.
