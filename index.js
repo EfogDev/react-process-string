@@ -1,4 +1,6 @@
 function processString(options) {
+    let key = 0;
+
     function processInputWithRegex(option, input) {
         if (!option.fn || typeof option.fn !== 'function')
             return input;
@@ -16,9 +18,10 @@ function processString(options) {
                 let match = result[0];
 
                 output.push(input.substring(0, index));
-                output.push(option.fn(index, result));
+                output.push(option.fn(++key, result));
 
-                input = input.substring(index + match.length, input.length);
+                input = input.substring(index + match.length, input.length + 1);
+                regex.lastIndex = 0;
             }
 
             output.push(input);
