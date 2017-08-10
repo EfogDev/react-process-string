@@ -45,3 +45,4 @@ function processString(options) {
 }
 
 module.exports = processString;
+
